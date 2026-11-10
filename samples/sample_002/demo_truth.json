@@ -1,0 +1,12 @@
+{
+ "chosen_composition_counts": {
+  "PET": 18,
+  "PS": 12,
+  "PE": 8,
+  "PP": 5,
+  "PA": 5,
+  "OTHER_PLASTIC": 2
+ },
+ "n_spectra": 50,
+ "note": "used only to verify the demo; pipeline does not read this file"
+}

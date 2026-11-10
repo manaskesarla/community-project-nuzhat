@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microplastics screening report – {{ r.sample_id }}</title>
+<style>
+ body{font-family:system-ui,sans-serif;max-width:980px;margin:24px auto;padding:0 16px;color:#1d1d1f;line-height:1.45}
+ .banner{background:#fff3cd;border:2px solid #e0a800;padding:10px 14px;border-radius:6px;font-weight:600;margin-bottom:8px}
+ .synth{background:#fde2e2;border-color:#c0392b}
+ h1{margin-bottom:0} h2{margin-top:28px;border-bottom:1px solid #ddd;padding-bottom:4px}
+ table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:4px 10px;text-align:left}
+ .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px} img{max-width:100%}
+ .lvl{display:inline-block;padding:2px 10px;border-radius:12px;color:#fff;font-weight:700}
+ .High{background:#2a9d8f}.Medium{background:#e9a100}.Low{background:#c0392b}
+ @media (prefers-color-scheme:dark){body{background:#111;color:#eee}td,th{border-color:#555}.banner{color:#111}}
+</style></head><body>
+<div class="banner">Proof of concept — not a validated measurement. Not for regulatory or health decisions.</div>
+{% if r.meta.image_is_synthetic %}<div class="banner synth">Synthetic data used: the filter image is computer-generated{% if r.meta.spectra_are_constructed_demo %}; the spectra were drawn from held-out test data to construct this demo sample{% endif %}.</div>{% endif %}
+<h1>Sample {{ r.sample_id }}</h1>
+<p>Overall confidence: <span class="lvl {{ r.overall_confidence }}">{{ r.overall_confidence }}</span>
+ &nbsp;(rule: the lowest of image <b>{{ r.confidence_components.image }}</b>, spectral <b>{{ r.confidence_components.spectral }}</b>,
+ sample-size cap <b>{{ r.confidence_components.sample_size_cap }}</b>)</p>
+
+<h2>Inputs and parameters</h2>
+<table>{% for k,v in r.meta.items() %}<tr><th>{{ k }}</th><td>{{ v }}</td></tr>{% endfor %}
+<tr><th>spectra analysed</th><td>{{ r.n_spectra }}</td></tr><tr><th>abstain threshold</th><td>{{ r.spectral.abstain_threshold }}</td></tr></table>
+
+<h2>Particles on the filter (image module)</h2>
+<p><b>{{ r.image.particle_count }}</b> particles detected{% if r.image.median_size_um %}; median size {{ '%.0f'|format(r.image.median_size_um) }} µm (D10 {{ '%.0f'|format(r.image.D10_um) }}, D90 {{ '%.0f'|format(r.image.D90_um) }}; {{ r.image.size_metric }}){% endif %}.
+{% if r.particles_per_litre %}Concentration: <b>{{ '%.0f'|format(r.particles_per_litre) }} particles/L</b> (count ÷ volume filtered).{% endif %}
+Image confidence: <span class="lvl {{ r.image.confidence }}">{{ r.image.confidence }}</span></p>
+<div class="grid"><div><img src="annotated_image.png" alt="annotated filter image"></div><div><img src="size_hist.png" alt="size histogram"></div></div>
+<p>Shape counts: {{ r.image.shape_counts }}</p>
+
+<h2>Polymer identification (spectral module)</h2>
+<div class="grid"><div><img src="polymer_bar.png" alt="polymer proportions"></div><div><img src="confidence_hist.png" alt="confidence"></div></div>
+<table><tr><th>class</th><th>spectra</th><th>proportion</th><th>95% CI</th><th>expected particles on filter*</th></tr>
+{% for c in classes %}<tr><td>{{ c }}</td><td>{{ r.polymer_counts[c] }}</td><td>{{ '%.2f'|format(r.polymers[c]) }}</td>
+<td>{{ '%.2f'|format(r.polymers_ci95[c][0]) }}–{{ '%.2f'|format(r.polymers_ci95[c][1]) }}</td>
+<td>{{ r.expected_particles_on_filter[c].estimate }} ({{ r.expected_particles_on_filter[c].low }}–{{ r.expected_particles_on_filter[c].high }})</td></tr>{% endfor %}</table>
+<p>* Extrapolation assumes the analysed spectra are a random subsample of all particles on the filter. Spectral score {{ '%.2f'|format(r.spectral.score) }} → <span class="lvl {{ r.spectral.level }}">{{ r.spectral.level }}</span></p>
+
+<h2>Assumptions and caveats</h2>
+<ul>{% for c in r.caveats %}<li>{{ c }}</li>{% endfor %}
+<li>Scale: {{ r.meta.um_per_pixel }} µm per pixel (calibration assumed, not measured).</li></ul>
+</body></html>

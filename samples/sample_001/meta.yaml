@@ -1,0 +1,9 @@
+id: sample_001
+location: (demo) river water, constructed
+date: 2026-01-01 (placeholder)
+volume_filtered_L: 1.0
+pore_size_um: 1.0
+um_per_pixel: 2.0
+image_is_synthetic: true
+spectra_are_constructed_demo: true
+image_source: data/images_synthetic/SYNTH_0032.png

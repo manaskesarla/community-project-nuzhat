@@ -232,9 +232,9 @@ abstain ("unidentified") instead of guessing.
 | `predict` function for a new raw spectrum file (`src/spectra/predict.py`) | ✅ done |
 | Interpretability plots (`src/spectra/interpret.py` → `outputs/interpretability.png`) | ✅ done |
 | Extra data to fix PVC / PA / ATR gaps (e.g. the Open Specy library, OSF project `x7dpz`) | ⏳ to download |
-| Image module: detect/count/size particles in filter images (needs synthetic images) | ⏳ not started |
-| Combined report for one sample (polymers + count + sizes + confidence) | ⏳ not started |
-| Written report: SDG justification + community component | ⏳ not started |
+| Image module: synthetic images + segment/measure/validate (`src/images/`) — **synthetic-data proof of concept only**, no real images yet | ✅ done (PoC) |
+| Combined report for one sample (`python run_sample.py samples/sample_001` → `outputs/sample_001/report.html`) | ✅ done |
+| Written report draft (`report/REPORT.md`; community component and some citations left for the team) | 🟡 drafted |
 | Stretch: noise-robustness tests, 1D-CNN vs classical, dashboard | ⏳ optional |
 
 The detailed step-by-step plan for every module is in `docs/`.
@@ -253,6 +253,11 @@ python -m src.spectra.train    # 2. compare models with grouped cross-validation
 python -m src.spectra.final    # 3. fit calibrated final model, score on held-out test -> models/, outputs/
 python -m src.spectra.predict my_spectrum.csv   # identify one spectrum (2 columns: wavenumber, absorbance)
 python -m src.spectra.interpret   # occlusion plot of which wavenumbers drive each class
+python -m src.images.synth --n 150      # 150 labelled SYNTHETIC filter images + ground truth -> data/images_synthetic/
+python -m src.images.validate           # image-module validation vs ground truth -> outputs/image_validation.*
+python -m src.images.measure img.png    # count/size particles in one image
+python -m src.report.make_demo          # (re)build the two constructed demo samples in samples/
+python run_sample.py samples/sample_001 # combined report -> outputs/sample_001/report.html + result.json
 python -m pytest -q tests      # sanity tests (label mapping, dataset shapes)
 ```
 All random choices use seed 42, so results reproduce. `config.yaml` holds the class list and wavenumber grid.
