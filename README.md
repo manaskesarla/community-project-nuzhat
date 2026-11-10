@@ -229,8 +229,8 @@ abstain ("unidentified") instead of guessing.
 | Dataset audit + label mapping + unified FTIR dataset | ✅ done |
 | Preprocessing | ✅ done |
 | Classifier training, group-aware CV, calibration, test evaluation | ✅ done |
-| `predict` function for a new raw spectrum file | ⏳ not yet written |
-| Interpretability plots (which wavenumbers drive each decision) | ⏳ not yet |
+| `predict` function for a new raw spectrum file (`src/spectra/predict.py`) | ✅ done |
+| Interpretability plots (`src/spectra/interpret.py` → `outputs/interpretability.png`) | ✅ done |
 | Extra data to fix PVC / PA / ATR gaps (e.g. the Open Specy library, OSF project `x7dpz`) | ⏳ to download |
 | Image module: detect/count/size particles in filter images (needs synthetic images) | ⏳ not started |
 | Combined report for one sample (polymers + count + sizes + confidence) | ⏳ not started |
@@ -251,6 +251,8 @@ pip install -r requirements.txt
 python -m src.spectra.load     # 1. build the clean dataset      -> data/spectra_processed/
 python -m src.spectra.train    # 2. compare models with grouped cross-validation (~1–2 min)
 python -m src.spectra.final    # 3. fit calibrated final model, score on held-out test -> models/, outputs/
+python -m src.spectra.predict my_spectrum.csv   # identify one spectrum (2 columns: wavenumber, absorbance)
+python -m src.spectra.interpret   # occlusion plot of which wavenumbers drive each class
 python -m pytest -q tests      # sanity tests (label mapping, dataset shapes)
 ```
 All random choices use seed 42, so results reproduce. `config.yaml` holds the class list and wavenumber grid.
