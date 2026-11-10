@@ -86,8 +86,10 @@ We verified the data against this table: for example, the mean absorbance at 171
 chemically as expected.
 
 ## 4. The data
-All raw files are in `databasedata/`. **It was downloaded from an open website, but the exact source and licence were
-not recorded** (see [Section 12](#12-data-provenance-ethics-and-references)). The metadata shows it contains spectra
+All raw files are in `databasedata/`. **It comes from the Zenodo record
+[10.5281/zenodo.10126851](https://zenodo.org/records/10126851)** (*Data and Code for High Throughput FTIR Analysis of Macro
+and Microplastics with Plate Readers*, v2, 2023; licence CC BY-NC 4.0 — non-commercial use), distributed as
+`databasedata.zip`. See [Section 12](#12-data-provenance-ethics-and-references). The metadata shows it contains spectra
 originating from published libraries (e.g. Primpke et al. 2018, FLOPP/FLOPP-e by De Frond et al. 2021, Chabuka et al. 2020)
 and measured plastic and non-plastic particles on 8 sample plates.
 
@@ -217,7 +219,7 @@ abstain ("unidentified") instead of guessing.
 5. **Single-source data.** All spectra come from one family of libraries; a different instrument/lab may shift
    performance (*domain shift*). Library spectra are cleaner than real weathered, dirty, biofouled particles.
 6. **FTIR only.** No Raman model.
-7. **The data's source/licence is unverified** (Section 12).
+7. **The data is licensed for non-commercial use only** (CC BY-NC 4.0, Section 12), so this project and anything derived from it must stay non-commercial and cite the source.
 8. **This is a research prototype, not a regulatory or diagnostic tool.**
 
 ## 8. Project status: what is done and what is not
@@ -238,7 +240,9 @@ abstain ("unidentified") instead of guessing.
 The detailed step-by-step plan for every module is in `docs/`.
 
 ## 9. How to run it
-Requirements: Python 3.10+ and the `databasedata/` folder present at the project root.
+Requirements: Python 3.10+ and the `databasedata/` folder present at the project root. The data is not stored in this
+repository (it is ~2 GB); download `databasedata.zip` from
+<https://zenodo.org/records/10126851> and unzip it at the project root so that `databasedata/` exists.
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
@@ -267,7 +271,7 @@ data/spectra_processed/  generated: spectra matrix, metadata, class table, split
 models/ftir_svm.pkl      generated: trained calibrated model
 outputs/                 generated: cv_results.json, confusion_test.csv
 config.yaml              seed, classes, wavenumber grid
-data/DATA_SOURCES.md     provenance log (needs completing)
+data/DATA_SOURCES.md     provenance log
 ```
 
 ## 11. Glossary
@@ -294,16 +298,19 @@ data/DATA_SOURCES.md     provenance log (needs completing)
 | **PE / PP / PS / PET / PVC / PA** | Polyethylene / polypropylene / polystyrene / polyethylene terephthalate / polyvinyl chloride / polyamide (nylon) |
 
 ## 12. Data provenance, ethics and references
-* **Source of `databasedata/`:** obtained as an open dataset from a website the team no longer remembers.
-  Metadata indicates origin in Open Specy–style libraries (see `Organization` column). **Before submission:** identify the
-  original source, record the licence and cite it in `data/DATA_SOURCES.md`.
-* Candidate original: Open Specy library, OSF project <https://osf.io/x7dpz/> (DOI 10.17605/OSF.IO/X7DPZ) — *not yet
-  confirmed to be the source of the local files.*
+* **Source of `databasedata/`:** Zenodo record [10.5281/zenodo.10126851](https://zenodo.org/records/10126851) (v2,
+  published 2023-11-14; file `databasedata.zip`, ~1.1 GB; earlier v1 is [10.5281/zenodo.7772572](https://zenodo.org/records/7772572)).
+  It accompanies Cowger W. et al. (2024) *Generation of macro- and microplastic databases by high-throughput FTIR analysis
+  with microplate readers*, Analytical and Bioanalytical Chemistry 416(6), 1311–1320, DOI 10.1007/s00216-024-05127-w.
+  Component libraries are listed in the `Organization` column of the metadata.
+* **Licence:** CC BY-NC 4.0 (non-commercial). Cite the Zenodo record and the paper above when using the data.
+* The dataset is not committed to this repository (too large for GitHub; `databasedata/` is in `.gitignore`).
 * **Ethics:** no human or personal data are involved. Any future community component (surveys, interviews, sampling) needs
   consent and anonymisation.
 * **Honesty statement:** results here are from a prototype on library-style spectra; they are not a validated field
   measurement. The planned image module will be a proof of concept using clearly labelled synthetic images.
 * **Key references:**
+  * Cowger W. et al. (2024) *Generation of macro- and microplastic databases by high-throughput FTIR analysis with microplate readers.* Analytical and Bioanalytical Chemistry 416(6), 1311–1320. DOI 10.1007/s00216-024-05127-w. Data: DOI 10.5281/zenodo.10126851
   * Cowger W. et al. (2021) *Microplastic Spectral Classification Needs an Open Source Community: Open Specy to the Rescue!* Analytical Chemistry. DOI 10.1021/acs.analchem.1c00123
   * De Frond H., Rubinovitz R., Rochman C. (2021) *µATR-FTIR Spectral Libraries of Plastic Particles (FLOPP and FLOPP-e) for the Analysis of Microplastics.* Analytical Chemistry 93(48). DOI 10.1021/acs.analchem.1c02549
   * Primpke S. et al. (2018) FTIR spectral library for microplastic identification (cited in dataset metadata).
