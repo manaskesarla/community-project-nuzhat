@@ -1,0 +1,21 @@
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+seaborn
+opencv-python
+scikit-image
+Pillow
+jupyter
+joblib
+tqdm
+jinja2
+pyyaml
+pybaselines
+pyarrow
+pytest
+# optional / stretch (install later)
+# torch
+# streamlit
+# weasyprint
