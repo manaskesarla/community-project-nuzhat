@@ -6,3 +6,6 @@ data/
 models/*.pkl
 outputs/
 .DS_Store
+
+# Large raw dataset (too big for GitHub)
+databasedata/
