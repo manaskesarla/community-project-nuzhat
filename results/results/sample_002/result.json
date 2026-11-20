@@ -1,0 +1,174 @@
+{
+  "sample_id": "sample_002",
+  "meta": {
+    "id": "sample_002",
+    "location": "(demo) tap water, constructed",
+    "date": "2026-01-01 (placeholder)",
+    "volume_filtered_L": 2.0,
+    "pore_size_um": 1.0,
+    "um_per_pixel": 2.0,
+    "image_is_synthetic": true,
+    "spectra_are_constructed_demo": true,
+    "image_source": "data/images_synthetic/SYNTH_0035.png"
+  },
+  "image": {
+    "particle_count": 73,
+    "median_size_um": 37.73592452822641,
+    "D10_um": 10.770329614269007,
+    "D90_um": 165.82577275270657,
+    "size_bins": {
+      "<20": 26,
+      "20-100": 32,
+      "100-500": 15,
+      "500-1000": 0,
+      ">1000": 0
+    },
+    "shape_counts": {
+      "fragment": 55,
+      "fibre": 17,
+      "film": 1
+    },
+    "confidence": "High",
+    "confidence_detail": {
+      "score": 0.833,
+      "level": "High",
+      "frac_small": 0.397,
+      "frac_ambiguous": 0.192,
+      "noise_penalty": 0.0,
+      "crowding_penalty": 0.0,
+      "focus_laplacian_var": 377.26
+    },
+    "is_synthetic": true,
+    "size_metric": "max Feret diameter"
+  },
+  "n_spectra": 50,
+  "polymer_counts": {
+    "PE": 9,
+    "PP": 5,
+    "PET": 18,
+    "PS": 10,
+    "PVC": 0,
+    "PA": 2,
+    "OTHER_PLASTIC": 2,
+    "NON_PLASTIC": 3,
+    "unidentified": 1
+  },
+  "polymers": {
+    "PE": 0.18,
+    "PP": 0.1,
+    "PET": 0.36,
+    "PS": 0.2,
+    "PVC": 0.0,
+    "PA": 0.04,
+    "OTHER_PLASTIC": 0.04,
+    "NON_PLASTIC": 0.06,
+    "unidentified": 0.02
+  },
+  "polymers_ci95": {
+    "PE": [
+      0.0977008273245379,
+      0.3079631945470261
+    ],
+    "PP": [
+      0.04347512399157111,
+      0.2136049033478839
+    ],
+    "PET": [
+      0.24138562967182875,
+      0.49859237989698046
+    ],
+    "PS": [
+      0.11243629945973886,
+      0.3303737210448524
+    ],
+    "PVC": [
+      0.0,
+      0.07135003417431873
+    ],
+    "PA": [
+      0.011038652660826577,
+      0.13460337877954667
+    ],
+    "OTHER_PLASTIC": [
+      0.011038652660826577,
+      0.13460337877954667
+    ],
+    "NON_PLASTIC": [
+      0.020614596364630478,
+      0.16217343370877002
+    ],
+    "unidentified": [
+      0.0035391680889764604,
+      0.10495686471836953
+    ]
+  },
+  "expected_particles_on_filter": {
+    "PE": {
+      "estimate": 13.1,
+      "low": 7.1,
+      "high": 22.5
+    },
+    "PP": {
+      "estimate": 7.3,
+      "low": 3.2,
+      "high": 15.6
+    },
+    "PET": {
+      "estimate": 26.3,
+      "low": 17.6,
+      "high": 36.4
+    },
+    "PS": {
+      "estimate": 14.6,
+      "low": 8.2,
+      "high": 24.1
+    },
+    "PVC": {
+      "estimate": 0.0,
+      "low": 0.0,
+      "high": 5.2
+    },
+    "PA": {
+      "estimate": 2.9,
+      "low": 0.8,
+      "high": 9.8
+    },
+    "OTHER_PLASTIC": {
+      "estimate": 2.9,
+      "low": 0.8,
+      "high": 9.8
+    },
+    "NON_PLASTIC": {
+      "estimate": 4.4,
+      "low": 1.5,
+      "high": 11.8
+    },
+    "unidentified": {
+      "estimate": 1.5,
+      "low": 0.3,
+      "high": 7.7
+    }
+  },
+  "spectral": {
+    "abstain_threshold": 0.5,
+    "fraction_unidentified": 0.02,
+    "mean_confidence_identified": 0.794434545454485,
+    "score": 0.7785458545453953,
+    "level": "Medium"
+  },
+  "particles_per_litre": 36.5,
+  "confidence_components": {
+    "image": "High",
+    "spectral": "Medium",
+    "sample_size_cap": "High"
+  },
+  "overall_confidence": "Medium",
+  "caveats": [
+    "SYNTHETIC IMAGE used for this sample.",
+    "Spectra were drawn from held-out test data to CONSTRUCT this demo sample; it is not a field sample.",
+    "Proof of concept: the image module is validated on synthetic images only and is not a validated measurement.",
+    "Optical imaging cannot identify polymers: particle counts are 'particles of interest', not confirmed plastics.",
+    "Polymer proportions assume the analysed spectra are a RANDOM subsample of the particles on the filter.",
+    "The spectral model was trained on library-style reference spectra; weathered or contaminated environmental particles may be misidentified (see README limitations)."
+  ]
+}

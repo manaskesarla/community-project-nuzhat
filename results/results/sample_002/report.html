@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microplastics screening report – sample_002</title>
+<style>
+ body{font-family:system-ui,sans-serif;max-width:980px;margin:24px auto;padding:0 16px;color:#1d1d1f;line-height:1.45}
+ .banner{background:#fff3cd;border:2px solid #e0a800;padding:10px 14px;border-radius:6px;font-weight:600;margin-bottom:8px}
+ .synth{background:#fde2e2;border-color:#c0392b}
+ h1{margin-bottom:0} h2{margin-top:28px;border-bottom:1px solid #ddd;padding-bottom:4px}
+ table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:4px 10px;text-align:left}
+ .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px} img{max-width:100%}
+ .lvl{display:inline-block;padding:2px 10px;border-radius:12px;color:#fff;font-weight:700}
+ .High{background:#2a9d8f}.Medium{background:#e9a100}.Low{background:#c0392b}
+ @media (prefers-color-scheme:dark){body{background:#111;color:#eee}td,th{border-color:#555}.banner{color:#111}}
+</style></head><body>
+<div class="banner">Proof of concept — not a validated measurement. Not for regulatory or health decisions.</div>
+<div class="banner synth">Synthetic data used: the filter image is computer-generated; the spectra were drawn from held-out test data to construct this demo sample.</div>
+<h1>Sample sample_002</h1>
+<p>Overall confidence: <span class="lvl Medium">Medium</span>
+ &nbsp;(rule: the lowest of image <b>High</b>, spectral <b>Medium</b>,
+ sample-size cap <b>High</b>)</p>
+
+<h2>Inputs and parameters</h2>
+<table><tr><th>id</th><td>sample_002</td></tr><tr><th>location</th><td>(demo) tap water, constructed</td></tr><tr><th>date</th><td>2026-01-01 (placeholder)</td></tr><tr><th>volume_filtered_L</th><td>2.0</td></tr><tr><th>pore_size_um</th><td>1.0</td></tr><tr><th>um_per_pixel</th><td>2.0</td></tr><tr><th>image_is_synthetic</th><td>True</td></tr><tr><th>spectra_are_constructed_demo</th><td>True</td></tr><tr><th>image_source</th><td>data/images_synthetic/SYNTH_0035.png</td></tr>
+<tr><th>spectra analysed</th><td>50</td></tr><tr><th>abstain threshold</th><td>0.5</td></tr></table>
+
+<h2>Particles on the filter (image module)</h2>
+<p><b>73</b> particles detected; median size 38 µm (D10 11, D90 166; max Feret diameter).
+Concentration: <b>36 particles/L</b> (count ÷ volume filtered).
+Image confidence: <span class="lvl High">High</span></p>
+<div class="grid"><div><img src="annotated_image.png" alt="annotated filter image"></div><div><img src="size_hist.png" alt="size histogram"></div></div>
+<p>Shape counts: {'fragment': 55, 'fibre': 17, 'film': 1}</p>
+
+<h2>Polymer identification (spectral module)</h2>
+<div class="grid"><div><img src="polymer_bar.png" alt="polymer proportions"></div><div><img src="confidence_hist.png" alt="confidence"></div></div>
+<table><tr><th>class</th><th>spectra</th><th>proportion</th><th>95% CI</th><th>expected particles on filter*</th></tr>
+<tr><td>PE</td><td>9</td><td>0.18</td>
+<td>0.10–0.31</td>
+<td>13.1 (7.1–22.5)</td></tr><tr><td>PP</td><td>5</td><td>0.10</td>
+<td>0.04–0.21</td>
+<td>7.3 (3.2–15.6)</td></tr><tr><td>PET</td><td>18</td><td>0.36</td>
+<td>0.24–0.50</td>
+<td>26.3 (17.6–36.4)</td></tr><tr><td>PS</td><td>10</td><td>0.20</td>
+<td>0.11–0.33</td>
+<td>14.6 (8.2–24.1)</td></tr><tr><td>PA</td><td>2</td><td>0.04</td>
+<td>0.01–0.13</td>
+<td>2.9 (0.8–9.8)</td></tr><tr><td>OTHER_PLASTIC</td><td>2</td><td>0.04</td>
+<td>0.01–0.13</td>
+<td>2.9 (0.8–9.8)</td></tr><tr><td>NON_PLASTIC</td><td>3</td><td>0.06</td>
+<td>0.02–0.16</td>
+<td>4.4 (1.5–11.8)</td></tr><tr><td>unidentified</td><td>1</td><td>0.02</td>
+<td>0.00–0.10</td>
+<td>1.5 (0.3–7.7)</td></tr></table>
+<p>* Extrapolation assumes the analysed spectra are a random subsample of all particles on the filter. Spectral score 0.78 → <span class="lvl Medium">Medium</span></p>
+
+<h2>Assumptions and caveats</h2>
+<ul><li>SYNTHETIC IMAGE used for this sample.</li><li>Spectra were drawn from held-out test data to CONSTRUCT this demo sample; it is not a field sample.</li><li>Proof of concept: the image module is validated on synthetic images only and is not a validated measurement.</li><li>Optical imaging cannot identify polymers: particle counts are 'particles of interest', not confirmed plastics.</li><li>Polymer proportions assume the analysed spectra are a RANDOM subsample of the particles on the filter.</li><li>The spectral model was trained on library-style reference spectra; weathered or contaminated environmental particles may be misidentified (see README limitations).</li>
+<li>Scale: 2.0 µm per pixel (calibration assumed, not measured).</li></ul>
+</body></html>
