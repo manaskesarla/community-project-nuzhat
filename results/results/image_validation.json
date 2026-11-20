@@ -1,0 +1,100 @@
+{
+  "note": "synthetic data only. count error compares predicted count to GT particles >= min detectable area",
+  "dev": {
+    "n_images": 30,
+    "count_MAE": 46.1,
+    "count_MAPE_pct": 17.798743326156192,
+    "count_bias": -43.36666666666667,
+    "count_pearson_r": 0.9768243003453192,
+    "precision": 0.8032243199676792,
+    "recall_detectable": 0.7121654667967203,
+    "F1": 0.7462944694184924,
+    "size_MAE_equiv_um": 3.1547330562944444,
+    "size_bias_equiv_um": 1.9922337765040548,
+    "size_MAE_feret_um": 9.628398296800011
+  },
+  "heldout": {
+    "n_images": 120,
+    "count_MAE": 42.05833333333333,
+    "count_MAPE_pct": 19.64642108652422,
+    "count_bias": -35.925,
+    "count_pearson_r": 0.9716838742365578,
+    "precision": 0.7790861290195404,
+    "recall_detectable": 0.7165980149975583,
+    "F1": 0.7367500903950486,
+    "size_MAE_equiv_um": 3.043498890805279,
+    "size_bias_equiv_um": 1.9117578256983578,
+    "size_MAE_feret_um": 8.895498244607113
+  },
+  "heldout_by_difficulty": {
+    "easy": {
+      "n_images": 40,
+      "count_MAE": 3.425,
+      "count_MAPE_pct": 14.431038569207022,
+      "count_bias": 1.125,
+      "count_pearson_r": 0.95582923701927,
+      "precision": 0.8255879390931262,
+      "recall_detectable": 0.8671033092601743,
+      "F1": 0.8420395794199564,
+      "size_MAE_equiv_um": 1.0912054637241861,
+      "size_bias_equiv_um": 0.5643007622417276,
+      "size_MAE_feret_um": 3.700787323919473
+    },
+    "medium": {
+      "n_images": 40,
+      "count_MAE": 16.075,
+      "count_MAPE_pct": 14.772262897000065,
+      "count_bias": -2.225,
+      "count_pearson_r": 0.9259961927523453,
+      "precision": 0.7354709485083657,
+      "recall_detectable": 0.7410597559447257,
+      "F1": 0.7328717535409278,
+      "size_MAE_equiv_um": 2.2720659097757974,
+      "size_bias_equiv_um": 1.4566194704203073,
+      "size_MAE_feret_um": 7.159902793324977
+    },
+    "hard": {
+      "n_images": 40,
+      "count_MAE": 106.675,
+      "count_MAPE_pct": 29.73596179336557,
+      "count_bias": -106.675,
+      "count_pearson_r": 0.8915535593579273,
+      "precision": 0.7761994994571293,
+      "recall_detectable": 0.541630979787775,
+      "F1": 0.6353389382242612,
+      "size_MAE_equiv_um": 3.689275659142026,
+      "size_bias_equiv_um": 2.3199230654852716,
+      "size_MAE_feret_um": 10.459801413333148
+    }
+  },
+  "heldout_all_gt_count_vs_pred": {
+    "missed_below_floor_pct": 3.0549999999999966
+  },
+  "heldout_by_confidence_level": {
+    "High": {
+      "n": 72,
+      "mean_abs_count_pct_err": 14.456757856485202
+    },
+    "Medium": {
+      "n": 48,
+      "mean_abs_count_pct_err": 27.43091593158275
+    }
+  },
+  "heldout_size_error_by_shape": {
+    "fibre": {
+      "n": 2264,
+      "MAE_equiv_um": 5.025494356772428,
+      "bias_equiv_um": 4.2065191874954735
+    },
+    "film": {
+      "n": 1956,
+      "MAE_equiv_um": 2.787410870416354,
+      "bias_equiv_um": 1.4395254682729535
+    },
+    "fragment": {
+      "n": 7433,
+      "MAE_equiv_um": 2.5071973211740555,
+      "bias_equiv_um": 1.3370701851784363
+    }
+  }
+}
